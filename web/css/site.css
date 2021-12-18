@@ -120,7 +120,16 @@ header {
   align-items: center;
   align-self: center;
 }
-
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+.field,
+select,
+.select,
 input,
 textarea {
   border: none;

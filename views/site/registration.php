@@ -1,6 +1,8 @@
 <?php
 
 /* @var $this yii\web\View */
+
+use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 $this->title = 'Регистрация';
 ?>
@@ -27,16 +29,18 @@ $this->title = 'Регистрация';
         </div>
         <div class="header_form">
           <h2>Регистрация участника</h2>
-          <form action="">
-            <input type="text" placeholder="Фамилия">
-            <input type="text" placeholder="Имя">
-            <input type="text" placeholder="Отчество">
-            <input type="email" placeholder="Ваш e-mail">
-            <input type="text" placeholder="Ваш телефон">
-            <input type="password" name="" placeholder="Ваш пароль">
-            <input type="password" name="" placeholder="Повторите пароль">
-            <button type="submit">РЕГИСТРАЦИЯ</button>
-          </form>
+
+          <?php $form = ActiveForm::begin( ['options' => ['class' => 'form'],]) ?>
+
+          <?= $form->field($model,'firstname')->textInput(['autofocus'=>true,'class'=>'field','placeholder'=>'Имя'])->label('') ?>
+          <?= $form->field($model,'secondname')->textInput(['class'=>'field','placeholder'=>'Фамилия'])->label('') ?>
+          <?= $form->field($model,'lastname')->textInput(['class'=>'field','placeholder'=>'Отчество'])->label('') ?>
+          <?= $form->field($model,'phone')->textInput(['class'=>'field','placeholder'=>'Телефон'])->label('') ?>
+          <?= $form->field($model,'email')->input('email',['class'=>'field','placeholder'=>'Почта'])->label('') ?>
+          <?= $form->field($model,'password')->passwordInput(['class'=>'field','placeholder'=>'Пароль'])->label('') ?>
+          <?= $form->field($model,'password_repeat')->passwordInput(['class'=>'field','placeholder'=>'Повторите пароль'])->label('') ?>
+          <button type="submit">РЕГИСТРАЦИЯ</button>
+          <?php ActiveForm::end(); ?>
         </div>
 
       </header>
