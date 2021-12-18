@@ -23,10 +23,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function  actionNews()
-    {
-        return $this->render('news');
-    }
+
     public function  actionRegistration()
     {
         $model = new Signup();
@@ -47,10 +44,6 @@ class SiteController extends Controller
         return $this->render('auth');
     }
 
-    public function  actionAddnews()
-    {
-        return $this->render('addNews');
-    }
     public function  actionAdduser()
     {
       $model = new Signup();
@@ -66,18 +59,12 @@ class SiteController extends Controller
       }
         return $this->render('adduser',['model'=>$model]);
     }
-    public function  actionAdmnews()
-    {
-        return $this->render('admNews');
-    }
+
     public function  actionAuthadm()
     {
         return $this->render('authAdm');
     }
-    public function  actionDeletenews()
-    {
-        return $this->render('deleteNews');
-    }
+
     public function  actionDeleteuser()
     {
         return $this->render('deleteUser');
@@ -86,24 +73,11 @@ class SiteController extends Controller
     {
         return $this->render('editUser');
     }
-    public function  actionEditnews()
-    {
-        return $this->render('editNews');
-    }
+
     public function  actionLc()
     {
         return $this->render('lc');
     }
-    /**
     
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
 
 }

@@ -55,19 +55,7 @@ $this->title = 'Международный IT-FORUM';
       </header>
       <!-- главный блок -->
       <main>
-        <div class="news">
-          <h2>Новости</h2>
-          <ul>
-            <li>
-              <img src="./img/news1.jpg" alt="" />
-              <p class="news_date">23 декабря 2021</p>
-              <a class="news_title" href=<?=  Url::to(['site/news']);?>>
-                ПОДВЕДЕНЫ ИТОГИ XII МЕЖДУНАРОДНОГО IT-ФОРУМА С УЧАСТИЕМ СТРАН БРИКС И ШОС
-              </a>
-            </li>
-           
-          </ul>
-        </div>
+        
         <div class="spikers">
           <h2>СПИКЕРЫ 2022 ГОДА</h2>
           <ul>

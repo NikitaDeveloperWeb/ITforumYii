@@ -27,8 +27,8 @@ $this->title = 'Административная панель';
         </div>
        <div class="adm_panel">
          <aside>
-           <a href=<?=  Url::to(['/site/lc']);?>>Пользователи</a>
-           <a href=<?=  Url::to(['/site/admnews']);?>>Новости</a>
+
+      
 
          </aside>
          <div class="adm_panel_content">
@@ -39,7 +39,7 @@ $this->title = 'Административная панель';
                <div class="user_phone blocks"><strong>Телефон</strong><p>890883743263</p></div>
                <div class="user_email blocks"><strong>Почта</strong><p>rusakdeveloper@gmail.com</p></div>
                <div class="user_action">
-                 <a href=<?=  Url::to(['site/edituser']);?>> <?= Html::img('@web/img/edit.png', ['alt'=>'some', 'class'=>'icon']);?></a>
+               
                  <a  href="<?=  Url::to(['site/deleteuser']);?>"> <?= Html::img('@web/img/delete.png', ['alt'=>'some', 'class'=>'icon']);?></a>
                </div>
              </li>
