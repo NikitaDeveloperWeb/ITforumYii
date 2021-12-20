@@ -2,9 +2,11 @@
 
 namespace app\controllers;
 
+use app\models\Login;
 use Yii;
 use yii\web\Controller;
 use app\models\Signup;
+use app\models\User;
 
 class SiteController extends Controller
 {
@@ -39,10 +41,7 @@ class SiteController extends Controller
         }
         return $this->render('registration', ['model'=>$model]);
     }
-    public function  actionAuth()
-    {
-        return $this->render('auth');
-    }
+
 
     public function  actionAdduser()
     {
@@ -59,21 +58,44 @@ class SiteController extends Controller
       }
         return $this->render('adduser',['model'=>$model]);
     }
+    public function actionLogout(){
+      if(Yii::$app->user->isGuest){
+        Yii::$app->user->logout();
+        return $this->redirect(['authAdm']);
+      }
+
+    }
 
     public function  actionAuthadm()
     {
-        return $this->render('authAdm');
+      if(!Yii::$app->user->isGuest)
+      {
+          return $this->redirect('lc');
+      }
+
+
+      $login_model = new Login();
+        
+      if(Yii::$app->request->post('Login') && $login_model['typeUser'] != 0)
+      {
+        $login_model->attributes = Yii::$app->request->post('Login');
+        if($login_model->validate())
+        {
+          Yii::$app->user->login($login_model->getUser());
+          return $this->redirect('lc');
+        };
+      }
+        return $this->render('authAdm',['login_model'=>$login_model]);
     }
 
-    public function  actionDeleteuser()
+    public function  actionDeleteuser($id)
     {
-        return $this->render('deleteUser');
+      $model = User::findOne($id);
+      if($model){
+        $model->delete();
+      }
+        return $this->redirect(['lc','id'=>$id]);
     }
-    public function  actionEdituser()
-    {
-        return $this->render('editUser');
-    }
-
     public function  actionLc()
     {
         return $this->render('lc');

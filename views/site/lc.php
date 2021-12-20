@@ -1,7 +1,14 @@
 <?php
-use yii\bootstrap4\Html;
+
 /* @var $this yii\web\View */
+
+use app\models\User;
+use yii\bootstrap4\Html;
+use yii\bootstrap4\Nav;
+use yii\bootstrap4\NavBar;
 use yii\helpers\Url;
+
+
 $this->title = 'Административная панель';
 ?>
       <header>
@@ -23,7 +30,32 @@ $this->title = 'Административная панель';
             <path d="M431.5 156L755.5 169.5L831 216.5H377L431.5 156Z" fill="#EB8484" />
             <path d="M580.5 183L638 196L611.5 528H558.5L580.5 183Z" fill="#EB8484" />
           </svg>
-          <h1><a href=<?=  Url::to(['/']);?>>Международный ИТ-ФОРУМ</a></h1>
+          <h1 style="display:flex;width:80%"><a href=<?=  Url::to(['/']);?>>Международный ИТ-ФОРУМ</a> 
+          <?php NavBar::begin([
+        'brandLabel' => '',
+        'brandUrl' => Yii::$app->homeUrl,
+        'options' => [
+            'class' => 'navbar navbar-expand-lg navbar-light ',
+            'style'=>'background:inherit;'
+        ],
+    ]);
+    echo Nav::widget([
+        'items' => [
+           
+          '<li>'
+          . Html::beginForm(['/site/logout'], 'post')
+
+          . Html::submitButton(
+              'Выйти (' . Yii::$app->user->identity->email . ')',
+              ['class' => 'btn btn-link']
+          )
+          . Html::endForm()
+          . '</li>'
+        ],
+    ]);
+    NavBar::end();
+    ?>
+    </h1>
         </div>
        <div class="adm_panel">
          <aside>
@@ -33,16 +65,22 @@ $this->title = 'Административная панель';
          </aside>
          <div class="adm_panel_content">
            <div class="adm_panel_content_header"><h2>Пользователи</h2><a href=<?=  Url::to(['site/adduser']);?>><?= Html::img('@web/img/addition.png', ['alt'=>'some', 'class'=>'icon']);?></a></div>
+           <?php $usersAll=User::find()->all() ?>
            <ul>
+            <?  foreach($usersAll as $us ) {
+              $id = $us['id'];
+              if($us['typeUser'] != 1){
+              ?>
              <li>
-               <div class="user_name blocks"><strong>Имя</strong><p>Русаков Никита Вячеславович</p></div>
-               <div class="user_phone blocks"><strong>Телефон</strong><p>890883743263</p></div>
-               <div class="user_email blocks"><strong>Почта</strong><p>rusakdeveloper@gmail.com</p></div>
+               <div class="user_name blocks"><strong>Имя</strong><p><?=$us['secondname'] . ' ' . $us['firstname'] . ' ' . $us['lastname'] ?></p></div>
+               <div class="user_phone blocks"><strong>Телефон</strong><p><?=$us['phone'] ?></p></div>
+               <div class="user_email blocks"><strong>Почта</strong><p><?=$us['email'] ?></p></div>
                <div class="user_action">
                
-                 <a  href="<?=  Url::to(['site/deleteuser']);?>"> <?= Html::img('@web/img/delete.png', ['alt'=>'some', 'class'=>'icon']);?></a>
+                 <a  href="<?=  Url::to(['site/deleteuser/','id'=>$id]);?>"> <?= Html::img('@web/img/delete.png', ['alt'=>'some', 'class'=>'icon']);?></a>
                </div>
              </li>
+             <? }}?>
             
            </ul>
          </div>

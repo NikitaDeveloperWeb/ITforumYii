@@ -1,5 +1,5 @@
 <?php
-
+use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 use yii\helpers\Url;
 $this->title = 'Авторизация';
@@ -27,11 +27,12 @@ $this->title = 'Авторизация';
         </div>
         <div class="header_form">
           <h2>Административная панель</h2>
-          <form action="">
-            <input type="email" placeholder="Ваш e-mail">
-            <input type="password" placeholder="Ваш апроль">
-            <button type="submit">ВХОД</button>
-          </form>
+          <?php $form = ActiveForm::begin( ['options' => ['class' => 'form']]); ?>
+            <?= $form->field($login_model,'email')->input('email',['class'=>'field','placeholder'=>'Почта'])->label('');  ?>
+            <?= $form->field($login_model,'password')->passwordInput(['class'=>'field','placeholder'=>'Пароль'])->label(''); ?>
+          <button type="submit">ВОЙТИ</button>
+          <?php ActiveForm::end(); ?>
+
         </div>
 
       </header>

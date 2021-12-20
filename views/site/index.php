@@ -51,7 +51,7 @@ $this->title = 'Международный IT-FORUM';
         <a href=  <?=  Url::to(['site/registration']);?> class="link-button">Зарегистрироваться</a>
       
 
-        <a href=<?=  Url::to(['site/auth']);?> class="link-button">Войти</a>
+        <a href=<?=  Url::to(['site/authadm']);?> class="link-button">Войти</a>
       </header>
       <!-- главный блок -->
       <main>
